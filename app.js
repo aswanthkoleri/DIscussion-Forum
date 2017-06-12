@@ -5,14 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var messages = require('express-messages');
-var flash = require('connect-flash');
 var multer = require('multer');
 var mongoose = require('mongoose');
 var upload = multer({ dest: 'uploads/' })
 var moment = require('moment');
 var expressValidator = require('express-validator');
-
+var flash = require('connect-flash');
+var messages = require("express-messages");
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 mongoose.connect('localhost:27017/discussionforum');
 var db = mongoose.connection;
@@ -26,6 +27,9 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -41,6 +45,10 @@ app.use(session({
 	saveUninitialized: true,
 	resave: true
 }));
+
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
 
 //express-validator
 app.use(expressValidator({
@@ -61,16 +69,28 @@ app.use(expressValidator({
 }));
 
 //connect flash
-app.use(require('connect-flash')());
+app.use(flash());
 app.use(function (req, res, next) {
-  res.locals.messages = require('express-messages')(req, res);
+  res.locals.messages = messages(req, res);
   next();
 });
+
+
 
 // Make db accessible to our router
 app.use(function(req,res,next){
 	req.db = db;
 	next();
+});
+
+// Global Vars
+app.use(function (req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  res.locals.isauth = 0;
+  next();
 });
 
 app.use('/', index);
