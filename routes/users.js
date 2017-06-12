@@ -8,6 +8,9 @@ var messages = require("express-messages");
 var User = require('../models/user');
 
 
+
+
+
 // Register
 router.get('/register', function(req, res, next){
 	if(req.isAuthenticated())

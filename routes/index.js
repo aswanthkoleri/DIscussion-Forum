@@ -24,23 +24,47 @@ router.get('/', function(req, res, next) {
   
 });
 router.get('/demo',ensureAuthenticated, function(req, res, next) {
-  res.render('demo', { title: 'Express' });
+  if(req.isAuthenticated()){
+		res.render('demo', {isauth:1});
+	}
+	else
+		res.render('demo', {isauth:0});
 });
 
 router.get('/archives',ensureAuthenticated, function(req, res, next) {
-  res.render('archives', { title: 'Express' });
+  if(req.isAuthenticated()){
+		res.render('archives', {isauth:1});
+	}
+	else
+		res.render('archives', {isauth:0});
 });
 
 router.get('/blog',ensureAuthenticated, function(req, res, next) {
-  res.render('blog', { title: 'Express' });
+  if(req.isAuthenticated()){
+		res.render('blog', {isauth:1});
+	}
+	else
+		res.render('blog', {isauth:0});
 });
 
 router.get('/page',ensureAuthenticated, function(req, res, next) {
-  res.render('page', { title: 'Express' });
+  if(req.isAuthenticated()){
+		res.render('page', {isauth:1});
+	}
+	else
+		res.render('page', {isauth:0});
 });
 
 router.get('/single',ensureAuthenticated, function(req, res, next) {
-  res.render('single', { title: 'Express' });
+  if(req.isAuthenticated()){
+		res.render('single', {isauth:1});
+	}
+	else
+		res.render('single', {isauth:0});
+});
+
+router.get('/profile',ensureAuthenticated,function(req, res, next){
+	 res.render('profile');
 });
 
 
