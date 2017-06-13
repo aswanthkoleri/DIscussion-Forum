@@ -4,7 +4,7 @@ var router = express.Router();
 var ArticleProvider = require('../article-provider').ArticleProvider;
 
 //article
-var articleProvider= new ArticleProvider();
+var articleProvider = new ArticleProvider('localhost', 27017);
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated()){
 		return next();
@@ -47,7 +47,25 @@ router.post('/newpost', function(req, res){
         res.redirect('/')
     });
 });
-
+router.get('/post/:id', function(req, res) {
+    articleProvider.findById(req.params.id, function(error, article) {
+        res.render('single',
+        { locals: {
+            title: article.title,
+            article:article
+        }
+        });
+    });
+});
+router.post('/post/addComment', function(req, res) {
+    articleProvider.addCommentToArticle(req.param('_id'), {
+        person: req.param('person'),
+        comment: req.param('comment'),
+        created_at: new Date()
+       } , function( error, docs) {
+           res.redirect('/blog/' + req.param('_id'))
+       });
+});
 
 router.get('/archives',ensureAuthenticated, function(req, res, next) {
   if(req.isAuthenticated()){
