@@ -32,6 +32,7 @@ router.get('/', function(req, res, next) {
 	
   
 });
+
 router.get('/newpost',ensureAuthenticated, function(req, res, next) {
   if(req.isAuthenticated()){
 		res.render('newpost', {isauth:1});
@@ -47,25 +48,8 @@ router.post('/newpost', function(req, res){
         res.redirect('/')
     });
 });
-router.get('/post/:id', function(req, res) {
-    articleProvider.findById(req.params.id, function(error, article) {
-        res.render('single',
-        { locals: {
-            title: article.title,
-            article:article
-        }
-        });
-    });
-});
-router.post('/post/addComment', function(req, res) {
-    articleProvider.addCommentToArticle(req.param('_id'), {
-        person: req.param('person'),
-        comment: req.param('comment'),
-        created_at: new Date()
-       } , function( error, docs) {
-           res.redirect('/blog/' + req.param('_id'))
-       });
-});
+
+
 
 router.get('/archives',ensureAuthenticated, function(req, res, next) {
   if(req.isAuthenticated()){
@@ -91,6 +75,11 @@ router.get('/page',ensureAuthenticated, function(req, res, next) {
 		res.render('page', {isauth:0});
 });
 
+
+
+router.get('/profile',ensureAuthenticated,function(req, res, next){
+	 res.render('profile');
+});
 router.get('/single',ensureAuthenticated, function(req, res, next) {
   if(req.isAuthenticated()){
 		res.render('single', {isauth:1});
@@ -98,9 +87,29 @@ router.get('/single',ensureAuthenticated, function(req, res, next) {
 	else
 		res.render('single', {isauth:0});
 });
+router.get('/:id?', function(req, res) {
+    if(req.isAuthenticated()){
+		articleProvider.findAll( function(error,docs){
+        res.render('single', { isauth:1,articles:docs,id:req.params.id});
+    })
+	}
+	else
+		{
+			articleProvider.findAll( function(error,docs){
+        res.render('single', { isauth:0,articles:docs,id:req.params.id});
+    })
+		}
+});
 
-router.get('/profile',ensureAuthenticated,function(req, res, next){
-	 res.render('profile');
+
+router.post('/addComment', function(req, res) {
+    articleProvider.addCommentToArticle(req.param('_id'), {
+        person: req.param('person'),
+        comment: req.param('comment'),
+        created_at: new Date()
+       } , function( error, docs) {
+           res.redirect('/' + req.param('_id'))
+       });
 });
 
 
