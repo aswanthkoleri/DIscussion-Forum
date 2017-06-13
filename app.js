@@ -19,6 +19,7 @@ mongoose.connect('localhost:27017/discussionforum');
 var db = mongoose.connection;
 
 
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -90,6 +91,7 @@ app.use(function (req, res, next) {
   res.locals.error = req.flash('error');
   res.locals.user = req.user || null;
   res.locals.isauth = 0;
+
   next();
 });
 
@@ -113,5 +115,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;
