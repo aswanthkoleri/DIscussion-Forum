@@ -20,7 +20,7 @@
     ================================================== -->
    <link rel="stylesheet" href="css/default.css">
 	<link rel="stylesheet" href="css/layout.css">  
-	<link rel="stylesheet" href="css/media-queries.css"> 
+	<link rel="stylesheet" href="css/media-queries.css">    
 
    <!-- Script
    ================================================== -->
@@ -32,7 +32,7 @@
 
 </head>
 
-<body>
+<body class="single">
 
    <!-- Header
    ================================================== -->
@@ -57,7 +57,7 @@
 	   	<div class="row">    		            
 
 			   	<ul id="nav" class="nav">
-			      	<li class="current"><a href="/">Home</a></li>
+			      	<li><a href="/">Home</a></li>
 			      	<li class="has-children"><a href="#">Dropdown</a>
 	                  <ul>
 	                     <li><a href="#">Submenu 01</a></li>
@@ -67,54 +67,51 @@
 	               </li>
 	               <li><a href="/demo">Demo</a></li>	
 	               <li><a href="/archives">Archives</a></li>
-			      	<li class="has-children"><a href="/single">Blog</a>
+			      	<li class="has-children current"><a href="/single">Blog</a>
 							<ul>
 	                     <li><a href="/blog">Blog Entries</a></li>
 	                     <li><a href="/single">Single Blog</a></li>	                     
 	                  </ul>
 			      	</li>		      	
 			      	<li><a href="/page">Page</a></li>
-			   	</ul> <!-- end #nav -->			   	 
-			   	<ul id="nav" class="nav" position="right">
-			   	<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
-			   	<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
-			   	<% if(isauth==0){ %>
-			   	 <li><a href="/users/register">Register</a></li>
-			     <li><a href="/users/login">Login</a></li>	
-			     <% } else { %> 
-           <li><a href="/newpost">Newpost</a></li>
-			     <li><a href="/users/logout">Logout</a></li>	
-			     <% } %>
+			   	</ul> <!-- end #nav -->			
+          <ul id="nav" class="nav" position="right">
+          <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+          <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+          <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+          <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+          <% if(isauth==0){ %>
+           <li><a href="/users/register">Register</a></li>
+           <li><a href="/users/login">Login</a></li>  
+           <% } else { %> 
+           <li><a href="/profile">Profile</a></li>
+           <li><a href="/users/logout">Logout</a></li>  
+           <% } %>   	 
 
 	   	</div> 
 
-	   </nav> <!-- end #nav-wrap --> 	     
+	   </nav> <!-- end #nav-wrap -->  	     
 
    </header> <!-- Header End -->
 
-   <div id="content-wrap">  
-
-      <div class="row section-head">
-
-      	<div class="twelve columns">
-
-	         <h1>Profile</h1>
-           <hr>
-
-	         <h3> Welcome <%= user.username %> </h3>
-	         <ul>
-	           <li>Name: <%= user.name %></li>
-	           <li>Username: <%= user.username %> </li>
-	           <li>EmailID: <%= user.email %> </li>
-            </ul>
-
-         </div>                 
-
-      </div> <!-- Row End-->
-
-      
-   </div> <!-- end content-wrap -->
-
+   <!-- Content
+   ================================================== -->
+   <div id="content-wrap">
+<center>
+  <form method="post">
+  <fieldset>
+    <legend>New Post:</legend>
+    Title:<br>
+    <input type="text" name="title" id="editArticleTitle" size="100">
+    <br>
+    Body:<br>
+    <textarea type="text" name="body" rows="20" id="editArticleBody" style="width: 600px;height: 600px;" ></textarea> 
+    <br><br>
+    <input type="submit" value="Send">
+  </fieldset>
+</form>
+</center>
+   </div> <!-- end content-wrap -->   
 
    <!-- Footer
    ================================================== -->
@@ -185,8 +182,7 @@
 
    </footer> <!-- End Footer-->
 
-
-   <!-- Java Script
+	<!-- Java Script
    ================================================== -->
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
    <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>

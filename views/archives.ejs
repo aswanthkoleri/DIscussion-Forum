@@ -78,12 +78,12 @@
                <ul id="nav" class="nav" position="right">
                <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
                <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
-               <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
-               <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+               
                <% if(isauth==0){ %>
                 <li><a href="/users/register">Register</a></li>
               <li><a href="/users/login">Login</a></li>  
               <% } else { %> 
+              <li><a href="/newpost">Newpost</a></li>
               <li><a href="/profile">Profile</a></li>
               <li><a href="/users/logout">Logout</a></li>   
               <% } %>   	 

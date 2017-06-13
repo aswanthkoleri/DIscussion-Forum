@@ -78,12 +78,13 @@
 			   	<ul id="nav" class="nav" position="right">
 			   	<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
 			   	<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
-			   	<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
-			   	<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+			   	
+			   	
 			   	<% if(isauth==0){ %>
 			   	 <li><a href="/users/register">Register</a></li>
 			     <li><a href="/users/login">Login</a></li>	
 			     <% } else { %> 
+			     <li><a href="/newpost">Newpost</a></li>
 			     <li><a href="/profile">Profile</a></li>
 			     <li><a href="/users/logout">Logout</a></li>	
 			     <% } %>
@@ -127,13 +128,13 @@
 					</div> 
 
 				</article> <!-- end entry -->
-
+           <% for(var i=0;i<articles.length;i++){ %>
 				<article class="entry">
 	   			
 					<header class="entry-header">
 
 						<h2 class="entry-title">
-							<a href="/single" title="">We All Love Good Typography.</a>
+							<a href="/single" title=""><%= articles[i].title %></a>
 						</h2> 				 
 					
 						<div class="entry-meta">
@@ -152,11 +153,11 @@
 					</header> 			
 
 					<div class="entry-content">
-						<p>Duis ex ad cupidatat tempor Excepteur cillum cupidatat fugiat nostrud cupidatat dolor sunt sint sit nisi est eu exercitation incididunt adipisicing veniam velit id fugiat enim mollit amet anim veniam dolor dolor irure velit commodo cillum sit nulla ullamco magna amet magna cupidatat qui labore cillum sit in tempor veniam consequat non laborum adipisicing aliqua ea nisi sint ut quis proident ullamco ut dolore culpa occaecat ut laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in.</p>
+						<p><%= articles[i].body %></p>
 					</div> 
 
 				</article> <!-- end entry -->
-
+            <% } %>
 				<article class="entry">
 	   			
 					<header class="entry-header">

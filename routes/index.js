@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
+// article
+var ArticleProvider = require('../article-provider').ArticleProvider;
 
-
-
+//article
+var articleProvider= new ArticleProvider();
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated()){
 		return next();
@@ -17,19 +19,35 @@ function ensureAuthenticated(req, res, next){
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	if(req.isAuthenticated()){
-		res.render('index', {isauth:1});
+		articleProvider.findAll( function(error,docs){
+        res.render('index', { isauth:1,articles:docs});
+    })
 	}
 	else
-		res.render('index', {isauth:0});
+		{
+			articleProvider.findAll( function(error,docs){
+        res.render('index', { isauth:0,articles:docs});
+    })
+		}
+	
   
 });
-router.get('/demo',ensureAuthenticated, function(req, res, next) {
+router.get('/newpost',ensureAuthenticated, function(req, res, next) {
   if(req.isAuthenticated()){
-		res.render('demo', {isauth:1});
+		res.render('newpost', {isauth:1});
 	}
 	else
-		res.render('demo', {isauth:0});
+		res.render('newpost', {isauth:0});
 });
+router.post('/newpost', function(req, res){
+    articleProvider.save({
+        title: req.param('title'),
+        body: req.param('body')
+    }, function( error, docs) {
+        res.redirect('/')
+    });
+});
+
 
 router.get('/archives',ensureAuthenticated, function(req, res, next) {
   if(req.isAuthenticated()){
