@@ -67,10 +67,10 @@
 	               </li>
 	               <li><a href="/demo">Demo</a></li>	
 	               <li><a href="/archives">Archives</a></li>
-			      	<li class="has-children"><a href="/single">Blog</a>
+			      	<li class="has-children current"><a href="#">Blog</a>
 							<ul>
-	                     <li><a href="/blog">Blog Entries</a></li>
-	                     <li><a href="/single">Single Blog</a></li>	                     
+	                     <li><a href="#">Link1</a></li>
+	                     <li><a href="#">Link2</a></li>	                     
 	                  </ul>
 			      	</li>		      	
 			      	<li><a href="/page">Page</a></li>
@@ -120,13 +120,19 @@
 						<div class="entry-meta">
 							<ul>
 								<li><%= articles[i].created_at %></li>
+                        
 								<span class="meta-sep">&bull;</span>							
-								<li>
-									<a href="#" title="" rel="category tag">Wordpress</a>,
-									<a href="#" title="" rel="category tag">Ghost</a>  
-								</li>
-								<span class="meta-sep">&bull;</span>
-								<li>Jane Doe</li>
+								<br>
+
+                        <% if(articles[i].tags) { %>
+                        <% if(articles[i].tags.length!=[]){ %>
+                        <li>Tags: <%= articles[i].tags %></li>
+                        <% }else{%>
+                        <% for(var j=0;i<articles[i].tags.length;j++){ %>
+								<li>Tags: <%= articles[i].tags[j] %></li>
+                        <% } %>
+                        <% } %>
+                        <% } %>
 							</ul>
 						</div>
 					 
