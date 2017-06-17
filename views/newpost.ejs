@@ -84,8 +84,13 @@
            <li><a href="/users/register">Register</a></li>
            <li><a href="/users/login">Login</a></li>  
            <% } else { %> 
-           <li><a href="/profile">Profile</a></li>
-           <li><a href="/users/logout">Logout</a></li>  
+            
+              <li class="has-children"><a href="#">Account</a>
+                     <ul>
+                        <li><a href="/profile">Profile</a></li>
+              <li><a href="/users/logout">Logout</a></li>   
+                     </ul>
+                  </li>
            <% } %>   	 
 
 	   	</div> 
