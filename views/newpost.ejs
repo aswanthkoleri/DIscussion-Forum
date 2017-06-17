@@ -67,10 +67,10 @@
 	               </li>
 	               <li><a href="/demo">Demo</a></li>	
 	               <li><a href="/archives">Archives</a></li>
-			      	<li class="has-children current"><a href="/single">Blog</a>
+			      	<li class="has-children current"><a href="#">Blog</a>
 							<ul>
-	                     <li><a href="/blog">Blog Entries</a></li>
-	                     <li><a href="/single">Single Blog</a></li>	                     
+	                     <li><a href="#">Link1</a></li>
+                       <li><a href="#">Link2</a></li>                    
 	                  </ul>
 			      	</li>		      	
 			      	<li><a href="/page">Page</a></li>
@@ -109,6 +109,22 @@
     Title:<br>
     <input type="text" name="title" id="editArticleTitle" size="100">
     <br>
+    Tags:<br>
+    <input type="text" name="tags" id="editArticleTags" size="100">
+    <% for(var i=0;i<articles.length;i++){ %>
+    <% if(articles[i].tags){ %>
+    <% if(articles[i].tags.length!=[]){ %>
+    <input type="checkbox" name="tags" value="<%= articles[i].tags %>"><%= articles[i].tags %>
+    <br>
+    <% }else{%>
+
+    <% for(var j=0;j<articles[i].tags.length;j++){ %>
+    <input type="checkbox" name="tags" value="<%= articles[i].tags[j] %>"><%= articles[i].tags[j] %>
+    <br>
+    <% } %>
+    <% } %>
+    <% } %>
+    <% } %>
     Body:<br>
     <textarea type="text" name="body" rows="20" id="editArticleBody" style="width: 600px;height: 600px;" ></textarea> 
     <br><br>

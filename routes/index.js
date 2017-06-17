@@ -35,15 +35,23 @@ router.get('/', function(req, res, next) {
 
 router.get('/newpost',ensureAuthenticated, function(req, res, next) {
   if(req.isAuthenticated()){
-		res.render('newpost', {isauth:1});
+  	    articleProvider.findAll( function(error,docs){
+        res.render('newpost', { isauth:1,articles:docs});
+    })
+		
 	}
 	else
-		res.render('newpost', {isauth:0});
+		{
+			articleProvider.findAll( function(error,docs){
+        res.render('newpost', { isauth:0,articles:docs});
+    })
+		}
 });
 router.post('/newpost', function(req, res){
     articleProvider.save({
         title: req.param('title'),
-        body: req.param('body')
+        body: req.param('body'),
+        tags: req.param('tags')
     }, function( error, docs) {
         res.redirect('/')
     });
@@ -80,13 +88,7 @@ router.get('/page',ensureAuthenticated, function(req, res, next) {
 router.get('/profile',ensureAuthenticated,function(req, res, next){
 	 res.render('profile');
 });
-router.get('/single',ensureAuthenticated, function(req, res, next) {
-  if(req.isAuthenticated()){
-		res.render('single', {isauth:1});
-	}
-	else
-		res.render('single', {isauth:0});
-});
+
 router.get('/:id?', function(req, res) {
     if(req.isAuthenticated()){
 		articleProvider.findAll( function(error,docs){
