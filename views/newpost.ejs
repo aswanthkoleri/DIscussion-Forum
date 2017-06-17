@@ -111,20 +111,26 @@
     <br>
     Tags:<br>
     <input type="text" name="tags" id="editArticleTags" size="100">
-    <% for(var i=0;i<articles.length;i++){ %>
-    <% if(articles[i].tags){ %>
-    <% if(articles[i].tags.length!=[]){ %>
-    <input type="checkbox" name="tags" value="<%= articles[i].tags %>"><%= articles[i].tags %>
-    <br>
-    <% }else{%>
-
-    <% for(var j=0;j<articles[i].tags.length;j++){ %>
+<% for(var i=0;i<articles.length;i++){ %>
+    <% str="" %>
+ <% if(articles[i].tags){ %>
+  <% for(var j=0;j<articles[i].tags.length;j++){ %>
+    <% if(articles[i].tags[j].length==1){ %>
+       <% str=articles[i].tags[j]+str %>
+       <% if(!articles[i].tags[j+1]){ %>
+       
+         <input type="checkbox" name="tags" value="<%= str %>"><%= str %>
+       
+       <% } %>
+    <% } %>
+    <% if(str==""){ %>
     <input type="checkbox" name="tags" value="<%= articles[i].tags[j] %>"><%= articles[i].tags[j] %>
-    <br>
     <% } %>
-    <% } %>
-    <% } %>
-    <% } %>
+  <% } %>
+    
+<% } %>
+<% } %>
+    <Br>
     Body:<br>
     <textarea type="text" name="body" rows="20" id="editArticleBody" style="width: 600px;height: 600px;" ></textarea> 
     <br><br>

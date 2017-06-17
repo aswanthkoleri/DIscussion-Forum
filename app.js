@@ -91,6 +91,12 @@ app.use(function (req, res, next) {
   res.locals.error = req.flash('error');
   res.locals.user = req.user || null;
   res.locals.isauth = 0;
+  res.locals.str = "";
+  res.locals.arr = [];
+  res.locals.l = 0;
+  res.locals.flag = -1;
+
+
 
   next();
 });
