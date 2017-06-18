@@ -130,20 +130,30 @@
 						</div> 
 				 
 					</header> 
-				
+				<!--
 					<div class="entry-content-media">
 						<div class="post-thumb">
 							<img src="images/m-farmerboy.jpg">
 						</div> 
 					</div>
-
+            -->
 					<div class="entry-content">
 						<p class="lead"><%= articles[i].body %></p>
 					</div>
 
 					<p class="tags">
   			         <span>Tagged in </span>:
-  				      <a href="#">orci</a>, <a href="#">lectus</a>, <a href="#">varius</a>, <a href="#">turpis</a>
+                 <% if(articles[i].tags) { %>
+                        <% if(articles[i].tags.length!=[]){ %>
+  				                   <a href="#"><%= articles[i].tags %></a>,
+                             <% } %>
+                 <% }else{%>
+                  <% for(var j=0;i<articles[i].tags.length;j++){ %>
+                    <% if(articles[i].tags[j]==""){%>
+                     <a href="#"><%= articles[i].tags[j] %></a>,
+                    <% } %>
+                  <% } %>
+                  <% } %> 
   			       </p> 
 
   			       <ul class="post-nav group">
