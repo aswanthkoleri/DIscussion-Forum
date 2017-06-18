@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var truncate = require('html-truncate');
 // article
 var ArticleProvider = require('../article-provider').ArticleProvider;
 
@@ -51,6 +52,7 @@ router.post('/newpost', function(req, res){
     articleProvider.save({
         title: req.param('title'),
         body: req.param('body'),
+        truncbody : truncate(req.param('body'),300),
         tags: req.param('tags')
     }, function( error, docs) {
         res.redirect('/')

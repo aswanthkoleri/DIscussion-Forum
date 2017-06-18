@@ -110,7 +110,7 @@
     <input type="text" name="title" id="editArticleTitle" size="100">
     <br>
     Tags:<br>
-    <input type="text" name="tags" id="editArticleTags" size="100">
+    
 <% for(var i=0;i<articles.length;i++){ %>
     <% str="" %>
  <% if(articles[i].tags){ %>
@@ -142,6 +142,7 @@
       <% } %>
       <% } %>
     <Br>
+    <input type="text" name="tags" id="editArticleTags" size="100">
     Body:<br>
     <textarea type="text" name="body" rows="20" id="editArticleBody" style="width: 600px;height: 600px;" ></textarea> 
     <br><br>

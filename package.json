@@ -17,6 +17,7 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "html-truncate": "^1.2.2",
     "moment": "*",
     "mongodb": "*",
     "mongoose": "*",
