@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var truncate = require('html-truncate');
+var paginate = require('mongoose-paginate');
 // article
 var ArticleProvider = require('../article-provider').ArticleProvider;
 
@@ -28,6 +29,21 @@ router.get('/', function(req, res, next) {
 		{
 			articleProvider.findAll( function(error,docs){
         res.render('index', { isauth:0,articles:docs});
+    })
+		}
+	
+  
+});
+router.get('/posts/:id?', function(req, res, next) {
+	if(req.isAuthenticated()){
+		articleProvider.findAll( function(error,docs){
+        res.render('tagsindex', { isauth:1,articles:docs,tag:req.param('id')});
+    })
+	}
+	else
+		{
+			articleProvider.findAll( function(error,docs){
+        res.render('tagsindex', { isauth:0,articles:docs,tag:req.param('id')});
     })
 		}
 	

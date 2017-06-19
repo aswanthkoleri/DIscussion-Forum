@@ -243,14 +243,40 @@
    			<div class="widget widget_categories group">
    				<h3>Categories.</h3> 
    				<ul>
-						<li><a href="#" title="">Wordpress</a> (2)</li>
-						<li><a href="#" title="">Ghost</a> (14)</li>
-						<li><a href="#" title="">Joomla</a> (5)</li>
-						<li><a href="#" title="">Drupal</a> (3)</li>
-						<li><a href="#" title="">Magento</a> (2)</li>
-						<li><a href="#" title="">Uncategorized</a> (9)</li>						
+                  <% for(var i=0;i<articles.length;i++){ %>
+                   <% str="" %>
+                   <% if(articles[i].tags){ %>
+                    <% for(var j=0;j<articles[i].tags.length;j++){ %>
+                      <% flag=-1 %>
+                      <% if(articles[i].tags[j].length==1){ %>
+                        <% str=str+articles[i].tags[j] %>
+                        <% if(!articles[i].tags[j+1]){ %>
+                          <% for(var k=0;k<arr.length;k++){ %>
+                            <% if(str==arr[k]){flag=0} %>
+                          <% } %>
+                        <% if(flag==-1){arr[l]=str;l=l+1} %>
+                        <% } %>
+                        <% } %>
+                        <% if(str==""){ %>
+                         <% for(var k=0;k<arr.length;k++){ %>
+                            <% if(articles[i].tags[j]==arr[k]){flag=0} %>
+                         <% } %>
+                         <% if(flag==-1){arr[l]=articles[i].tags[j];l=l+1} %>
+   
+                        <% } %>
+                        <% } %>
+    
+                        <% } %>
+                        <% } %>
+                        <% for(var m=0;m<arr.length;m++){ %>
+                            <% if(arr[m]){ %>
+                            <li><a href="/posts/<%= arr[m] %>" title=""><%= arr[m] %></a></li>
+                           <% } %>
+                      <% } %>
+										
 					</ul>
 				</div>
+
 
 				<div class="widget widget_text group">
 					<h3>Widget Text.</h3>
