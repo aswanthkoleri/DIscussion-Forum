@@ -34,6 +34,7 @@ router.get('/', function(req, res, next) {
 	
   
 });
+
 router.get('/posts/:id?', function(req, res, next) {
 	if(req.isAuthenticated()){
 		articleProvider.findAll( function(error,docs){
@@ -76,36 +77,68 @@ router.post('/newpost', function(req, res){
 });
 
 
-
-router.get('/archives',ensureAuthenticated, function(req, res, next) {
+router.get('/profile',ensureAuthenticated, function(req, res, next) {
   if(req.isAuthenticated()){
-		res.render('archives', {isauth:1});
+  	    articleProvider.findAll( function(error,docs){
+        res.render('profile', { isauth:1,articles:docs});
+    })
+		
 	}
 	else
-		res.render('archives', {isauth:0});
-});
-
-router.get('/blog',ensureAuthenticated, function(req, res, next) {
-  if(req.isAuthenticated()){
-		res.render('blog', {isauth:1});
-	}
-	else
-		res.render('blog', {isauth:0});
+		{
+			articleProvider.findAll( function(error,docs){
+        res.render('profile', { isauth:0,articles:docs});
+    })
+		}
 });
 
 router.get('/page',ensureAuthenticated, function(req, res, next) {
   if(req.isAuthenticated()){
-		res.render('page', {isauth:1});
+  	    articleProvider.findAll( function(error,docs){
+        res.render('page', { isauth:1,articles:docs});
+    })
+		
 	}
 	else
-		res.render('page', {isauth:0});
+		{
+			articleProvider.findAll( function(error,docs){
+        res.render('page', { isauth:0,articles:docs});
+    })
+		}
 });
 
 
-
-router.get('/profile',ensureAuthenticated,function(req, res, next){
-	 res.render('profile');
+router.get('/blog',ensureAuthenticated, function(req, res, next) {
+  if(req.isAuthenticated()){
+  	    articleProvider.findAll( function(error,docs){
+        res.render('blog', { isauth:1,articles:docs});
+    })
+		
+	}
+	else
+		{
+			articleProvider.findAll( function(error,docs){
+        res.render('blog', { isauth:0,articles:docs});
+    })
+		}
 });
+
+
+router.get('/archives',ensureAuthenticated, function(req, res, next) {
+  if(req.isAuthenticated()){
+  	    articleProvider.findAll( function(error,docs){
+        res.render('archives', { isauth:1,articles:docs});
+    })
+		
+	}
+	else
+		{
+			articleProvider.findAll( function(error,docs){
+        res.render('archives', { isauth:0,articles:docs});
+    })
+		}
+});
+
 
 router.get('/:id?', function(req, res) {
     if(req.isAuthenticated()){
