@@ -24,11 +24,11 @@
 
    <!-- Script
    ================================================== -->
-	<script src="js/modernizr.js"></script>
+	<script src="../js/modernizr.js"></script>
 
    <!-- Favicons
 	================================================== -->
-	<link rel="shortcut icon" href="favicon.png" >
+	<link rel="shortcut icon" href="../favicon.png" >
 
 </head>
 
@@ -164,6 +164,7 @@
                </div> 
 
             </article> <!-- end entry -->
+            <hr>
          <% } %>
                   
 
@@ -221,6 +222,7 @@
                </div> 
 
             </article> <!-- end entry -->
+            <hr>
             <% } %>
            
           
@@ -231,101 +233,7 @@
 <% } %>
 <% } %>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-           <% for(var i=0;i<articles.length;i++){ %>
-				 <% if(articles[i].tags) { %>
-               <% if(articles[i].tags.length!=[]){ %>
-                        <% if(tag==articles[i].tags){ %>
-                             
-            <% } %>
-                           
-               <% }else{%>
-                        <% for(var j=0;i<articles[i].tags.length;j++){ %>
-                        <% if(articles[i].tags[j]==""){%>
-                        
-                        <% if(tag==articles[i].tags[j]){ %>
-                           <article class="entry">
-               
-                            <header class="entry-header">
-
-                               <h2 class="entry-title">
-                                 <a href="/<%= articles[i]._id.toHexString() %>" title=""><%= articles[i].title %></a>
-                               </h2>              
-               
-                           <div class="entry-meta">
-                            <ul>
-                              <li><%= articles[i].created_at %></li>
-                        
-                            <span class="meta-sep">&bull;</span>                     
-                            <br>
-
-                           <% if(articles[i].tags) { %>
-                           <% if(articles[i].tags.length!=[]){ %>
-                           <li>Tags: <%= articles[i].tags %></li>
-                           <% }else{%>
-                           <% for(var m=0;i<articles[i].tags.length;m++){ %>
-                           <% if(articles[i].tags[m]==""){%>
-                           <li>Tags: 
-                                  <%= articles[i].tags[m] %>
-                           </li>
-                           <% } %>
-                           <% } %>
-                           <% } %>
-                           <% } %>
-                           </ul>
-                          </div>
-                
-                          </header>         
-
-               <div class="entry-content">
-                  <p><%= articles[i].truncbody %></p>
-                  <div class="widget widget_tags">
-                  <div class="tagcloud group">
-                  <p align="right">
-                  <a href="/<%= articles[i]._id.toHexString() %>">
-                  <button position="right" style="background-color: #9FCC7F; border: none;color: white;padding: 5px 10px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;" class="btn btn-primary"><font color="white">Read More</font></button>
-                  </a>
-                  </p>
-                  </div>
-                  </div>
-               </div> 
-
-            </article> <!-- end entry -->
-            <% } %>
-
-                        <% } %>
-                        <% } %>
-                        <% } %>
-                        <% } %>
-           
-            <% } %>
-				
-						
+          
 
    		</div> <!-- end main -->
 
@@ -456,14 +364,14 @@
             <h3>Photostream</h3>
             
             <ul class="photostream group">
-               <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
-               <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
-               <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
-               <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
-               <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
-               <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
-               <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
-               <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
+               <li><a href="#"><img alt="thumbnail" src="../images/thumb.jpg"></a></li>
+               <li><a href="#"><img alt="thumbnail" src="../images/thumb.jpg"></a></li>
+               <li><a href="#"><img alt="thumbnail" src="../images/thumb.jpg"></a></li>
+               <li><a href="#"><img alt="thumbnail" src="../images/thumb.jpg"></a></li>
+               <li><a href="#"><img alt="thumbnail" src="../images/thumb.jpg"></a></li>
+               <li><a href="#"><img alt="thumbnail" src="../images/thumb.jpg"></a></li>
+               <li><a href="#"><img alt="thumbnail" src="../images/thumb.jpg"></a></li>
+               <li><a href="#"><img alt="thumbnail" src="../images/thumb.jpg"></a></li>
             </ul>           
 
          </div>
@@ -492,9 +400,9 @@
    <!-- Java Script
    ================================================== -->
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-   <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
-   <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>  
-   <script src="js/main.js"></script>
+   <script>window.jQuery || document.write('<script src="../js/jquery-1.10.2.min.js"><\/script>')</script>
+   <script type="text/javascript" src="../js/jquery-migrate-1.2.1.min.js"></script>  
+   <script src="../js/main.js"></script>
 
 </body>
 
