@@ -109,6 +109,7 @@
    		<div id="main" class="eight columns">
 
            <% for(var i=0;i<articles.length;i++){ %>
+
 				<article class="entry">
 	   			
 					<header class="entry-header">
@@ -120,7 +121,12 @@
 						<div class="entry-meta">
 							<ul>
 								<li><%= articles[i].created_at %></li>
-                        
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              
+               <span class="meta-sep">&bull;</span>posted by:<%= articles[i].user %>        
 								<span class="meta-sep">&bull;</span>							
 								<br>
 
@@ -156,6 +162,7 @@
 					</div> 
 
 				</article> <!-- end entry -->
+            <hr>
             <% } %>
 				
 						

@@ -4,7 +4,7 @@ var truncate = require('html-truncate');
 var paginate = require('mongoose-paginate');
 // article
 var ArticleProvider = require('../article-provider').ArticleProvider;
-
+var User = require('../models/user');
 //article
 var articleProvider = new ArticleProvider('localhost', 27017);
 function ensureAuthenticated(req, res, next){
@@ -70,7 +70,8 @@ router.post('/newpost', function(req, res){
         title: req.param('title'),
         body: req.param('body'),
         truncbody : truncate(req.param('body'),300),
-        tags: req.param('tags')
+        tags: req.param('tags'),
+        user: req.param('user')
     }, function( error, docs) {
         res.redirect('/')
     });
