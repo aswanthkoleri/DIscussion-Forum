@@ -64,6 +64,16 @@ ArticleProvider.prototype.save = function(articles, callback) {
       }
     });
 };
+ArticleProvider.prototype.remove = function(articles,rtitle,ruser, callback) {
+    this.getCollection(function(error, article_collection) {
+      if( error ) callback(error)
+      else {
+        article_collection.remove( { title: rtitle,user: ruser }, function() {
+          callback(null, articles);
+        });
+      }
+    });
+};
 ArticleProvider.prototype.addCommentToArticle = function(articleId, comment, callback) {
   this.getCollection(function(error, article_collection) {
     if( error ) callback( error );
