@@ -93,6 +93,16 @@ router.get('/profile',ensureAuthenticated, function(req, res, next) {
 		}
 });
 
+router.post('/profile',ensureAuthenticated, function(req, res, next) {
+	var rtitle = req.param('rtitle') ; 
+	var ruser = req.param('ruser');
+	articleProvider.findAll( function(error,docs){
+     articleProvider.remove(docs,rtitle,ruser, function( error, docs) {
+        res.redirect('/')
+    });
+     })
+});
+
 router.get('/page',ensureAuthenticated, function(req, res, next) {
   if(req.isAuthenticated()){
   	    articleProvider.findAll( function(error,docs){

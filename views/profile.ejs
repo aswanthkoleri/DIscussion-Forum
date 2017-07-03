@@ -25,7 +25,7 @@
    <!-- Script
    ================================================== -->
 	<script src="js/modernizr.js"></script>
-
+   <script src="https://use.fontawesome.com/7557089cc5.js"></script>
    <!-- Favicons
 	================================================== -->
 	<link rel="shortcut icon" href="favicon.png" >
@@ -107,7 +107,80 @@
 	           <li>Username: <%= user.username %> </li>
 	           <li>EmailID: <%= user.email %> </li>
             </ul>
+           <h1>Posts</h1>
+           <hr>
+           <% for(var i=0;i<articles.length;i++){ %>
+           <% if(articles[i].user==user.username){ %>
 
+            <article class="entry">
+               
+               <header class="entry-header">
+
+                  <h2 class="entry-title">
+                     <a href="/<%= articles[i]._id.toHexString() %>" title=""><%= articles[i].title %></a>
+                  </h2>              
+               
+                  <div class="entry-meta">
+                     <ul>
+                        <li><%= articles[i].created_at %></li>
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              
+               <span class="meta-sep">&bull;</span>posted by:<%= articles[i].user %>        
+                        <span class="meta-sep">&bull;</span>                     
+                        <br>
+
+                        <% if(articles[i].tags) { %>
+                        <% if(articles[i].tags.length!=[]){ %>
+                        <li>Tags: <%= articles[i].tags %></li>
+                        <% }else{%>
+                        <% for(var j=0;i<articles[i].tags.length;j++){ %>
+                        <% if(articles[i].tags[j]==""){%>
+                        <li>Tags: 
+                                  <%= articles[i].tags[j] %>
+                        </li>
+                        <% } %>
+                        <% } %>
+                        <% } %>
+                        <% } %>
+                     </ul>
+                  </div>
+                
+               </header>         
+
+               <div class="entry-content">
+                  <p><%= articles[i].truncbody %></p>
+                  <div class="widget widget_tags">
+                  <div class="tagcloud group">
+                  <p align="right">
+                   <form method="POST">
+                     <input type="hidden" name="rtitle" value="<%= articles[i].title %>">
+                     <input type="hidden" name="ruser" value="<%= articles[i].user %>">
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  
+                    <button type="submit" style="background-color: #9FCC7F; border: none;color: white;padding: 5px 7px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                  </form>
+                  </p>
+                  </div>
+                  </div>
+               </div> 
+
+            </article> <!-- end entry -->
+            <hr>
+            <% } %>
+            <% } %>
          </div>                 
 
       </div> <!-- Row End-->
